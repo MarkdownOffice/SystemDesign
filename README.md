@@ -1,6 +1,6 @@
 # MarkdownOffice Design System
+<img height="100" width="100" src="https://github.com/MarkdownOffice/SystemDesign/raw/main/MarkdownOffice-Logo.png">
 
-![MarkdownOffice-Logo](https://github.com/MarkdownOffice/SystemDesign/raw/main/MarkdownOffice-Logo.png)
 > **Universal Design System** for MarkdownOffice — built on Microsoft Fluent 2 Web.
 > Primary brand: `#0F6CBD`. Typeface: **Segoe UI**. Architecture: token-first, AI-compatible.
 
