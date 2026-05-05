@@ -1,0 +1,275 @@
+/* =============================================================================
+   MarkdownOffice — Product Tokens (mo-tokens.css)
+   Layer 3: MarkdownOffice-specific semantic tokens built on top of Fluent 2.
+
+   Import AFTER design-tokens.css. Never use raw hex here — always reference
+   Fluent alias tokens so light/dark theming is automatic.
+
+   Naming convention: --mo-{zone}-{property}
+   ============================================================================= */
+
+/* =============================================================================
+   App Shell — structural dimensions & surfaces
+   ============================================================================= */
+:root {
+  /* Dimensions */
+  --mo-shell-header-height:     48px;
+  --mo-ribbon-height:           88px;  /* Tab row (40px) + command row (48px) */
+  --mo-ribbon-tab-height:       40px;
+  --mo-ribbon-cmd-height:       48px;
+  --mo-sidebar-width:           220px;
+  --mo-sidebar-width-collapsed: 0px;
+  --mo-right-panel-width:       280px;
+  --mo-status-bar-height:       24px;
+
+  /* Transitions */
+  --mo-panel-transition:
+    width var(--durationNormal) var(--curveEasyEase),
+    opacity var(--durationFaster) var(--curveEasyEase);
+}
+
+/* =============================================================================
+   Light theme — MarkdownOffice product tokens
+   ============================================================================= */
+:root,
+[data-theme="light"] {
+
+  /* --- App Shell --- */
+  --mo-shell-bg:                var(--colorNeutralBackground1);
+  --mo-shell-border:            var(--colorNeutralStroke2);
+
+  /* --- Header --- */
+  --mo-header-bg:               var(--colorNeutralBackground1);
+  --mo-header-border:           var(--colorNeutralStroke2);
+  --mo-header-logo-color:       var(--colorBrandForeground1);
+  --mo-header-title-color:      var(--colorNeutralForeground1);
+  --mo-header-icon-color:       var(--colorNeutralForeground2);
+  --mo-header-icon-hover:       var(--colorNeutralBackground1Hover);
+  --mo-header-btn-primary-bg:   var(--colorBrandBackground);
+  --mo-header-btn-primary-fg:   var(--colorNeutralForegroundOnBrand);
+
+  /* --- Ribbon --- */
+  --mo-ribbon-bg:               var(--colorNeutralBackground1);
+  --mo-ribbon-border:           var(--colorNeutralStroke2);
+
+  /* Tab strip */
+  --mo-ribbon-tab-fg:           var(--colorNeutralForeground2);
+  --mo-ribbon-tab-hover-bg:     var(--colorSubtleBackgroundHover);
+  --mo-ribbon-tab-active-fg:    var(--colorBrandForeground1);
+  --mo-ribbon-tab-active-indicator: var(--colorBrandStroke1);
+
+  /* Command buttons (ghost by default, brand on primary) */
+  --mo-ribbon-cmd-fg:           var(--colorNeutralForeground1);
+  --mo-ribbon-cmd-hover-bg:     var(--colorSubtleBackgroundHover);
+  --mo-ribbon-cmd-pressed-bg:   var(--colorSubtleBackgroundPressed);
+  --mo-ribbon-cmd-active-bg:    var(--colorNeutralBackground1Selected);
+  --mo-ribbon-cmd-active-fg:    var(--colorBrandForeground1);
+  --mo-ribbon-cmd-disabled-fg:  var(--colorNeutralForegroundDisabled);
+
+  /* Command group separator */
+  --mo-ribbon-separator:        var(--colorNeutralStroke2);
+
+  /* Font / size pickers (dropdown inputs inside ribbon) */
+  --mo-ribbon-input-bg:         var(--colorNeutralBackground1);
+  --mo-ribbon-input-border:     var(--colorNeutralStroke1);
+  --mo-ribbon-input-hover:      var(--colorNeutralBackground1Hover);
+
+  /* --- Sidebar (file tree / left panel) --- */
+  --mo-sidebar-bg:              var(--colorNeutralBackground2);
+  --mo-sidebar-border:          var(--colorNeutralStroke2);
+  --mo-sidebar-item-fg:         var(--colorNeutralForeground2);
+  --mo-sidebar-item-hover:      var(--colorSubtleBackgroundHover);
+  --mo-sidebar-item-active-bg:  var(--colorNeutralBackground1Selected);
+  --mo-sidebar-item-active-fg:  var(--colorNeutralForeground1);
+  --mo-sidebar-folder-fg:       var(--colorNeutralForeground1);
+  --mo-sidebar-icon-fg:         var(--colorBrandForeground1);
+  --mo-sidebar-header-fg:       var(--colorNeutralForeground3);
+  --mo-sidebar-search-bg:       var(--colorNeutralBackground3);
+
+  /* --- Editor Canvas --- */
+  --mo-editor-canvas-bg:        var(--colorNeutralBackground1);
+  --mo-editor-source-bg:        var(--colorNeutralBackground3);  /* slightly recessed for code feel */
+  --mo-editor-preview-bg:       var(--colorNeutralBackground1);
+  --mo-editor-split-border:     var(--colorNeutralStroke2);
+
+  /* Gutter (line numbers) */
+  --mo-editor-gutter-bg:        var(--colorNeutralBackground3);
+  --mo-editor-gutter-fg:        var(--colorNeutralForeground3);
+  --mo-editor-gutter-width:     40px;
+  --mo-editor-gutter-border:    var(--colorNeutralStroke3);
+
+  /* Source editor text */
+  --mo-editor-source-fg:        var(--colorNeutralForeground1);
+  --mo-editor-source-cursor:    var(--colorNeutralForeground1);
+  --mo-editor-source-selection: var(--colorBrandBackground2);
+
+  /* Markdown syntax highlighting in source pane */
+  --mo-syntax-heading:          var(--colorBrandForeground1);
+  --mo-syntax-bold:             var(--colorNeutralForeground1);
+  --mo-syntax-italic:           var(--colorNeutralForeground2);
+  --mo-syntax-code-inline-bg:   var(--colorNeutralBackground4);
+  --mo-syntax-code-inline-fg:   var(--colorStatusDangerForeground1);
+  --mo-syntax-code-block-bg:    var(--colorNeutralBackground5);
+  --mo-syntax-code-block-fg:    var(--colorNeutralForeground1);
+  --mo-syntax-link:             var(--colorBrandForegroundLink);
+  --mo-syntax-marker:           var(--colorNeutralForeground3);  /* # > - * symbols */
+  --mo-syntax-blockquote-bar:   var(--colorNeutralStroke1);
+  --mo-syntax-blockquote-fg:    var(--colorNeutralForeground2);
+  --mo-syntax-table-border:     var(--colorNeutralStroke2);
+
+  /* Preview rendered content */
+  --mo-preview-heading-fg:      var(--colorNeutralForeground1);
+  --mo-preview-body-fg:         var(--colorNeutralForeground1);
+  --mo-preview-code-bg:         var(--colorNeutralBackground4);
+  --mo-preview-code-fg:         var(--colorNeutralForeground1);
+  --mo-preview-blockquote-bar:  var(--colorBrandStroke1);
+  --mo-preview-link:            var(--colorBrandForegroundLink);
+  --mo-preview-table-border:    var(--colorNeutralStroke2);
+  --mo-preview-table-header-bg: var(--colorNeutralBackground3);
+  --mo-preview-hr:              var(--colorNeutralStroke2);
+
+  /* Reading width constraint */
+  --mo-editor-content-max-width: 680px;
+  --mo-editor-content-padding-h: var(--spacingHorizontalXXXL);  /* 32px */
+  --mo-editor-content-padding-v: var(--spacingVerticalXXL);     /* 24px */
+
+  /* --- Block System --- */
+  --mo-block-hover-bg:          var(--colorNeutralBackground1Hover);
+  --mo-block-selected-bg:       var(--colorBrandBackground2);
+  --mo-block-selected-border:   var(--colorBrandStroke1);
+  --mo-block-focus-ring:        var(--colorBrandStroke1);
+  --mo-block-drag-handle-fg:    var(--colorNeutralForeground3);
+  --mo-block-drag-handle-hover: var(--colorNeutralForeground2);
+  --mo-block-add-btn-fg:        var(--colorNeutralForeground3);
+  --mo-block-add-btn-hover:     var(--colorBrandForeground1);
+  --mo-block-type-badge-bg:     var(--colorNeutralBackground3);
+  --mo-block-type-badge-fg:     var(--colorNeutralForeground3);
+
+  /* Block: locked / require approval */
+  --mo-block-locked-bg:         var(--colorStatusWarningBackground1);
+  --mo-block-locked-border:     var(--colorStatusWarningBorder1);
+  --mo-block-locked-icon:       var(--colorStatusWarningForeground1);
+
+  /* Block: validation error */
+  --mo-block-error-bg:          var(--colorStatusDangerBackground1);
+  --mo-block-error-border:      var(--colorStatusDangerBorder1);
+
+  /* --- Right Panel (Outline / Comments) --- */
+  --mo-panel-bg:                var(--colorNeutralBackground2);
+  --mo-panel-border:            var(--colorNeutralStroke2);
+  --mo-panel-header-fg:         var(--colorNeutralForeground1);
+  --mo-panel-header-bg:         var(--colorNeutralBackground2);
+  --mo-panel-close-btn:         var(--colorNeutralForeground2);
+
+  /* Outline tree */
+  --mo-outline-item-fg:         var(--colorNeutralForeground2);
+  --mo-outline-item-hover:      var(--colorSubtleBackgroundHover);
+  --mo-outline-item-active-fg:  var(--colorBrandForeground1);
+  --mo-outline-h1-weight:       var(--fontWeightSemibold);
+  --mo-outline-h2-weight:       var(--fontWeightRegular);
+  --mo-outline-indent:          var(--spacingHorizontalM);
+
+  /* Comments */
+  --mo-comment-bg:              var(--colorNeutralBackground1);
+  --mo-comment-border:          var(--colorNeutralStroke2);
+  --mo-comment-avatar-size:     28px;
+  --mo-comment-meta-fg:         var(--colorNeutralForeground3);
+  --mo-comment-body-fg:         var(--colorNeutralForeground1);
+  --mo-comment-reply-bg:        var(--colorNeutralBackground2);
+  --mo-comment-link-fg:         var(--colorBrandForegroundLink);
+  --mo-comment-bar:             var(--colorBrandStroke1);  /* left accent bar */
+
+  /* --- Status Bar --- */
+  --mo-status-bar-bg:           var(--colorNeutralBackground3);
+  --mo-status-bar-border:       var(--colorNeutralStroke2);
+  --mo-status-bar-fg:           var(--colorNeutralForeground3);
+  --mo-status-bar-item-hover:   var(--colorSubtleBackgroundHover);
+  --mo-status-bar-saved-fg:     var(--colorStatusSuccessForeground1);
+  --mo-status-bar-unsaved-fg:   var(--colorStatusWarningForeground1);
+  --mo-status-bar-error-fg:     var(--colorStatusDangerForeground1);
+
+  /* --- Agent Surfaces --- */
+  /* Proposal overlay (Read → Propose → Validate → Commit) */
+  --mo-agent-propose-bg:        var(--colorBrandBackground2);
+  --mo-agent-propose-border:    var(--colorBrandStroke2);
+  --mo-agent-propose-fg:        var(--colorBrandForeground1);
+  --mo-agent-propose-badge-bg:  var(--colorBrandBackground);
+  --mo-agent-propose-badge-fg:  var(--colorNeutralForegroundOnBrand);
+
+  /* Agent role badges */
+  --mo-agent-generator-bg:      var(--colorPaletteBlueBackground2);
+  --mo-agent-generator-fg:      var(--colorPaletteBlueForeground2);
+  --mo-agent-validator-bg:      var(--colorPaletteGreenBackground2);
+  --mo-agent-validator-fg:      var(--colorPaletteGreenForeground2);
+  --mo-agent-refiner-bg:        var(--colorPalettePurpleBackground2);
+  --mo-agent-refiner-fg:        var(--colorPalettePurpleForeground2);
+  --mo-agent-sync-bg:           var(--colorPaletteMarigoldBackground2);
+  --mo-agent-sync-fg:           var(--colorPaletteMarigoldForeground2);
+
+  /* Annotation / reasoning panel */
+  --mo-agent-annotation-bg:     var(--colorNeutralBackground3);
+  --mo-agent-annotation-border: var(--colorNeutralStroke2);
+  --mo-agent-annotation-fg:     var(--colorNeutralForeground2);
+
+  /* --- Collaboration --- */
+  /* Presence avatars in header */
+  --mo-collab-avatar-ring:      var(--colorNeutralBackground1);
+
+  /* Multi-cursor colors (4 named slots, rotates) */
+  --mo-collab-cursor-1:         #0F6CBD;  /* brand blue */
+  --mo-collab-cursor-2:         #107C10;  /* green */
+  --mo-collab-cursor-3:         #C50F1F;  /* red */
+  --mo-collab-cursor-4:         #8764B8;  /* purple */
+
+  /* Section lock overlay */
+  --mo-collab-lock-bg:          rgba(15, 108, 189, 0.06);
+  --mo-collab-lock-border:      var(--colorBrandStroke2);
+
+  /* Diff / suggestion mode */
+  --mo-diff-added-bg:           rgba(16, 124, 16, 0.12);
+  --mo-diff-added-border:       var(--colorStatusSuccessBorder1);
+  --mo-diff-removed-bg:         rgba(197, 15, 31, 0.08);
+  --mo-diff-removed-border:     var(--colorStatusDangerBorder1);
+  --mo-diff-added-fg:           var(--colorStatusSuccessForeground1);
+  --mo-diff-removed-fg:         var(--colorStatusDangerForeground1);
+
+  /* --- Slash Command Palette --- */
+  --mo-slash-bg:                var(--colorNeutralBackground1);
+  --mo-slash-border:            var(--colorNeutralStroke1);
+  --mo-slash-shadow:            var(--shadow16);
+  --mo-slash-item-hover:        var(--colorSubtleBackgroundHover);
+  --mo-slash-item-active-bg:    var(--colorNeutralBackground1Selected);
+  --mo-slash-item-icon-bg:      var(--colorNeutralBackground3);
+  --mo-slash-item-icon-fg:      var(--colorNeutralForeground2);
+  --mo-slash-kbd-bg:            var(--colorNeutralBackground3);
+  --mo-slash-kbd-fg:            var(--colorNeutralForeground3);
+}
+
+/* =============================================================================
+   Dark theme — MarkdownOffice product tokens
+   All reference Fluent alias tokens which auto-resolve to dark values.
+   Only tokens that need explicit dark-specific overrides are listed here.
+   ============================================================================= */
+[data-theme="dark"],
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+
+    /* Editor source pane is slightly lifted in dark (reversed from light) */
+    --mo-editor-source-bg:         var(--colorNeutralBackground2);
+    --mo-editor-preview-bg:        var(--colorNeutralBackground1);
+
+    /* Syntax markers are softer in dark */
+    --mo-syntax-marker:            var(--colorNeutralForeground4);
+
+    /* Code blocks use deeper surface in dark */
+    --mo-syntax-code-block-bg:     var(--colorNeutralBackground4);
+    --mo-preview-code-bg:          var(--colorNeutralBackground4);
+
+    /* Diff overlays use higher opacity in dark for visibility */
+    --mo-diff-added-bg:            rgba(84, 176, 84, 0.16);
+    --mo-diff-removed-bg:          rgba(220, 98, 109, 0.14);
+
+    /* Lock overlay adapts to dark canvas */
+    --mo-collab-lock-bg:           rgba(71, 158, 245, 0.08);
+  }
+}
