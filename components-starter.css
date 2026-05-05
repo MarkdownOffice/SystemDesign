@@ -1,0 +1,525 @@
+/* =============================================================================
+   Claude Design System — Component Starter
+   Microsoft Fluent 2 Web patterns wired to design-tokens.css
+   
+   Import order:
+     1. design-tokens.css
+     2. components-starter.css (this file)
+     3. Your app stylesheet
+   ============================================================================= */
+
+/* -----------------------------------------------------------------------------
+   0. Base / reset
+   --------------------------------------------------------------------------- */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  font-weight: var(--fontWeightRegular);
+  color: var(--colorNeutralForeground1);
+  background: var(--colorNeutralBackground1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+code, pre, kbd, samp {
+  font-family: var(--fontFamilyMonospace);
+}
+
+a {
+  color: var(--colorBrandForegroundLink);
+  text-decoration: none;
+  transition: color var(--durationFaster) var(--curveEasyEase);
+}
+a:hover    { color: var(--colorBrandForegroundLinkHover); text-decoration: underline; }
+a:active   { color: var(--colorBrandForegroundLinkPressed); }
+
+/* Two-layer focus ring that inherits Fluent's contrast guarantees */
+:where(a, button, [role="button"], input, select, textarea, summary, [tabindex]):focus-visible {
+  outline: var(--strokeWidthThick) solid var(--colorStrokeFocus1);
+  outline-offset: -2px;
+  box-shadow: 0 0 0 var(--strokeWidthThick) var(--colorStrokeFocus2);
+  border-radius: var(--borderRadiusMedium); /* ensures the ring matches the control */
+}
+
+
+/* -----------------------------------------------------------------------------
+   1. Typography utility classes
+   --------------------------------------------------------------------------- */
+
+.fui-display          { font: var(--fontWeightSemibold) var(--fontSizeHero1000)/var(--lineHeightHero1000) var(--fontFamilyBase); }
+.fui-large-title      { font: var(--fontWeightSemibold) var(--fontSizeHero900)/var(--lineHeightHero900)  var(--fontFamilyBase); }
+.fui-title-1          { font: var(--fontWeightSemibold) var(--fontSizeHero800)/var(--lineHeightHero800)  var(--fontFamilyBase); }
+.fui-title-2          { font: var(--fontWeightSemibold) var(--fontSizeHero700)/var(--lineHeightHero700)  var(--fontFamilyBase); }
+.fui-title-3          { font: var(--fontWeightSemibold) var(--fontSizeBase600)/var(--lineHeightBase600)  var(--fontFamilyBase); }
+.fui-subtitle-1       { font: var(--fontWeightSemibold) var(--fontSizeBase500)/var(--lineHeightBase500)  var(--fontFamilyBase); }
+.fui-subtitle-2       { font: var(--fontWeightSemibold) var(--fontSizeBase400)/var(--lineHeightBase400)  var(--fontFamilyBase); }
+.fui-body-1           { font: var(--fontWeightRegular)  var(--fontSizeBase300)/var(--lineHeightBase300)  var(--fontFamilyBase); }
+.fui-body-1-strong    { font: var(--fontWeightSemibold) var(--fontSizeBase300)/var(--lineHeightBase300)  var(--fontFamilyBase); }
+.fui-body-2           { font: var(--fontWeightRegular)  var(--fontSizeBase400)/var(--lineHeightBase400)  var(--fontFamilyBase); }
+.fui-caption-1        { font: var(--fontWeightRegular)  var(--fontSizeBase200)/var(--lineHeightBase200)  var(--fontFamilyBase); }
+.fui-caption-1-strong { font: var(--fontWeightSemibold) var(--fontSizeBase200)/var(--lineHeightBase200)  var(--fontFamilyBase); }
+.fui-caption-2        { font: var(--fontWeightRegular)  var(--fontSizeBase100)/var(--lineHeightBase100)  var(--fontFamilyBase); }
+
+
+/* -----------------------------------------------------------------------------
+   2. Button
+   Variants: --primary (brand fill), --subtle (ghost), --outline, --danger
+   Sizes:    --sm, default, --lg
+   --------------------------------------------------------------------------- */
+
+.fui-btn {
+  /* base shape */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacingHorizontalXS);
+  padding: var(--spacingVerticalS) var(--spacingHorizontalM); /* 8 / 12 */
+  min-height: 32px;
+
+  /* type */
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  font-weight: var(--fontWeightSemibold);
+
+  /* color — defaults to secondary (neutral) */
+  background: var(--colorNeutralBackground1);
+  color: var(--colorNeutralForeground1);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+  border-radius: var(--borderRadiusMedium);
+
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background-color var(--durationFaster) var(--curveEasyEase),
+    border-color     var(--durationFaster) var(--curveEasyEase),
+    color            var(--durationFaster) var(--curveEasyEase);
+}
+.fui-btn:hover {
+  background: var(--colorNeutralBackground1Hover);
+  border-color: var(--colorNeutralStroke1Hover);
+}
+.fui-btn:active {
+  background: var(--colorNeutralBackground1Pressed);
+  border-color: var(--colorNeutralStroke1Pressed);
+  transition-duration: var(--durationUltraFast);
+}
+.fui-btn:disabled,
+.fui-btn[aria-disabled="true"] {
+  background: var(--colorNeutralBackgroundDisabled);
+  color: var(--colorNeutralForegroundDisabled);
+  border-color: var(--colorNeutralStrokeDisabled);
+  cursor: not-allowed;
+}
+
+/* Primary (brand) */
+.fui-btn--primary {
+  background: var(--colorBrandBackground);
+  color: var(--colorNeutralForegroundOnBrand);
+  border-color: transparent;
+}
+.fui-btn--primary:hover {
+  background: var(--colorBrandBackgroundHover);
+  border-color: transparent;
+}
+.fui-btn--primary:active {
+  background: var(--colorBrandBackgroundPressed);
+  border-color: transparent;
+}
+.fui-btn--primary:disabled,
+.fui-btn--primary[aria-disabled="true"] {
+  background: var(--colorNeutralBackgroundDisabled);
+  color: var(--colorNeutralForegroundDisabled);
+  border-color: var(--colorNeutralStrokeDisabled);
+}
+
+/* Subtle (ghost) — transparent rest */
+.fui-btn--subtle {
+  background: var(--colorSubtleBackground);
+  color: var(--colorNeutralForeground2);
+  border-color: transparent;
+}
+.fui-btn--subtle:hover {
+  background: var(--colorSubtleBackgroundHover);
+  color: var(--colorNeutralForeground2Hover);
+}
+.fui-btn--subtle:active {
+  background: var(--colorSubtleBackgroundPressed);
+  color: var(--colorNeutralForeground2Pressed);
+}
+
+/* Outline — border only, no fill */
+.fui-btn--outline {
+  background: transparent;
+  color: var(--colorNeutralForeground1);
+  border-color: var(--colorNeutralStroke1);
+}
+.fui-btn--outline:hover {
+  background: var(--colorSubtleBackgroundHover);
+}
+
+/* Danger — destructive action */
+.fui-btn--danger {
+  background: var(--colorStatusDangerBackground3);
+  color: var(--colorNeutralForegroundOnBrand);
+  border-color: transparent;
+}
+.fui-btn--danger:hover  { background: var(--colorStatusDangerBackground3Hover); }
+.fui-btn--danger:active { background: var(--colorStatusDangerBackground3Pressed); }
+
+/* Size modifiers */
+.fui-btn--sm {
+  min-height: 24px;
+  padding: var(--spacingVerticalXS) var(--spacingHorizontalS); /* 4 / 8 */
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+}
+.fui-btn--lg {
+  min-height: 40px;
+  padding: var(--spacingVerticalSNudge) var(--spacingHorizontalL); /* 6 / 16 */
+  font-size: var(--fontSizeBase400);
+  line-height: var(--lineHeightBase400);
+}
+
+/* Icon-only button — square */
+.fui-btn--icon {
+  padding: var(--spacingVerticalS);
+  aspect-ratio: 1 / 1;
+}
+
+
+/* -----------------------------------------------------------------------------
+   3. Input, textarea, select
+   --------------------------------------------------------------------------- */
+
+.fui-input,
+.fui-textarea,
+.fui-select {
+  display: block;
+  width: 100%;
+  padding: var(--spacingVerticalSNudge) var(--spacingHorizontalMNudge); /* 6 / 10 */
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  color: var(--colorNeutralForeground1);
+  background: var(--colorNeutralBackground1);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke1);
+  border-bottom-color: var(--colorNeutralStrokeAccessible); /* Fluent's bottom-emphasis */
+  border-radius: var(--borderRadiusMedium);
+  transition:
+    border-color var(--durationFaster) var(--curveEasyEase),
+    box-shadow   var(--durationFaster) var(--curveEasyEase);
+}
+
+.fui-input::placeholder,
+.fui-textarea::placeholder {
+  color: var(--colorNeutralForeground4);
+}
+
+.fui-input:hover,
+.fui-textarea:hover,
+.fui-select:hover {
+  border-color: var(--colorNeutralStroke1Hover);
+  border-bottom-color: var(--colorNeutralStrokeAccessible);
+}
+
+/* Active/focus state — brand bottom border, no layout shift */
+.fui-input:focus,
+.fui-textarea:focus,
+.fui-select:focus {
+  outline: none;
+  border-color: var(--colorNeutralStroke1);
+  border-bottom-color: var(--colorBrandStroke1);
+  box-shadow: inset 0 -1px 0 0 var(--colorBrandStroke1);
+}
+
+.fui-input:disabled,
+.fui-textarea:disabled,
+.fui-select:disabled {
+  background: var(--colorNeutralBackgroundDisabled);
+  color: var(--colorNeutralForegroundDisabled);
+  border-color: var(--colorNeutralStrokeDisabled);
+  cursor: not-allowed;
+}
+
+/* Invalid state */
+.fui-input[aria-invalid="true"],
+.fui-textarea[aria-invalid="true"],
+.fui-select[aria-invalid="true"] {
+  border-color: var(--colorStatusDangerBorder2);
+  border-bottom-color: var(--colorStatusDangerBorder2);
+}
+
+.fui-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+
+/* -----------------------------------------------------------------------------
+   4. Form group (label + input + hint)
+   --------------------------------------------------------------------------- */
+
+.fui-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacingVerticalXS); /* 4 */
+}
+
+.fui-label {
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  font-weight: var(--fontWeightSemibold);
+  color: var(--colorNeutralForeground1);
+}
+
+.fui-label-required::after {
+  content: ' *';
+  color: var(--colorStatusDangerForeground1);
+}
+
+.fui-hint {
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+  color: var(--colorNeutralForeground3);
+}
+
+.fui-error {
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+  color: var(--colorStatusDangerForeground1);
+  display: flex;
+  align-items: center;
+  gap: var(--spacingHorizontalXXS);
+}
+
+
+/* -----------------------------------------------------------------------------
+   5. Card
+   --------------------------------------------------------------------------- */
+
+.fui-card {
+  background: var(--colorNeutralBackground1);
+  border: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+  border-radius: var(--borderRadiusXLarge);
+  box-shadow: var(--shadow4);
+  padding: var(--spacingVerticalL) var(--spacingHorizontalL);
+  transition: box-shadow var(--durationFaster) var(--curveEasyEase);
+}
+
+.fui-card--interactive { cursor: pointer; }
+.fui-card--interactive:hover  { box-shadow: var(--shadow8); }
+.fui-card--interactive:active { box-shadow: var(--shadow2); }
+
+.fui-card--flat { box-shadow: none; }
+
+.fui-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacingVerticalM);
+  font: var(--fontWeightSemibold) var(--fontSizeBase500)/var(--lineHeightBase500) var(--fontFamilyBase);
+}
+
+.fui-card-body { color: var(--colorNeutralForeground2); }
+
+.fui-card-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacingHorizontalS);
+  margin-top: var(--spacingVerticalL);
+  padding-top: var(--spacingVerticalM);
+  border-top: var(--strokeWidthThin) solid var(--colorNeutralStroke3);
+}
+
+
+/* -----------------------------------------------------------------------------
+   6. Badge / Tag / Chip
+   --------------------------------------------------------------------------- */
+
+.fui-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacingHorizontalXXS);
+  padding: var(--spacingVerticalXXS) var(--spacingHorizontalS);
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase200);
+  line-height: var(--lineHeightBase200);
+  font-weight: var(--fontWeightSemibold);
+  color: var(--colorNeutralForeground2);
+  background: var(--colorNeutralBackground3);
+  border-radius: var(--borderRadiusCircular);
+}
+
+.fui-badge--brand   { background: var(--colorBrandBackground);              color: var(--colorNeutralForegroundOnBrand); }
+.fui-badge--danger  { background: var(--colorStatusDangerBackground2);      color: var(--colorStatusDangerForeground2); }
+.fui-badge--success { background: var(--colorStatusSuccessBackground2);    color: var(--colorStatusSuccessForeground2); }
+.fui-badge--warning { background: var(--colorStatusWarningBackground2);    color: var(--colorStatusWarningForeground2); }
+
+/* Dot variant — tiny notification indicator */
+.fui-badge--dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  background: var(--colorStatusDangerBackground3);
+  border-radius: var(--borderRadiusCircular);
+  display: inline-block;
+}
+
+
+/* -----------------------------------------------------------------------------
+   7. Alert / Message bar
+   --------------------------------------------------------------------------- */
+
+.fui-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacingHorizontalS);
+  padding: var(--spacingVerticalM) var(--spacingHorizontalL);
+  font-family: var(--fontFamilyBase);
+  font-size: var(--fontSizeBase300);
+  line-height: var(--lineHeightBase300);
+  border: var(--strokeWidthThin) solid transparent;
+  border-radius: var(--borderRadiusMedium);
+}
+
+.fui-alert--info    { background: var(--colorBrandBackground2);            border-color: var(--colorBrandStroke2);             color: var(--colorNeutralForeground1); }
+.fui-alert--danger  { background: var(--colorStatusDangerBackground1);     border-color: var(--colorStatusDangerBorder1);      color: var(--colorStatusDangerForeground1); }
+.fui-alert--success { background: var(--colorStatusSuccessBackground1);   border-color: var(--colorStatusSuccessBorder1);    color: var(--colorStatusSuccessForeground1); }
+.fui-alert--warning { background: var(--colorStatusWarningBackground1);   border-color: var(--colorStatusWarningBorder1);    color: var(--colorStatusWarningForeground1); }
+
+.fui-alert-title { font-weight: var(--fontWeightSemibold); }
+.fui-alert-body  { color: var(--colorNeutralForeground2); margin-top: var(--spacingVerticalXXS); }
+
+
+/* -----------------------------------------------------------------------------
+   8. Divider
+   --------------------------------------------------------------------------- */
+
+.fui-divider {
+  border: 0;
+  border-top: var(--strokeWidthThin) solid var(--colorNeutralStroke2);
+  margin: var(--spacingVerticalM) 0;
+}
+
+
+/* -----------------------------------------------------------------------------
+   9. Dialog / Modal
+   --------------------------------------------------------------------------- */
+
+.fui-dialog-backdrop {
+  position: fixed;
+  inset: 0;
+  background: var(--colorBackgroundOverlay);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity var(--durationGentle) var(--curveEasyEase);
+}
+
+.fui-dialog-backdrop[data-state="open"] { opacity: 1; }
+
+.fui-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.96);
+  z-index: 1001;
+
+  min-width: 320px;
+  max-width: min(560px, calc(100vw - var(--spacingHorizontalXXL) * 2));
+  max-height: calc(100vh - var(--spacingVerticalXXL) * 2);
+  overflow: auto;
+
+  background: var(--colorNeutralBackground1);
+  border-radius: var(--borderRadiusXLarge);
+  box-shadow: var(--shadow64);
+  padding: var(--spacingVerticalXXL) var(--spacingHorizontalXXL);
+
+  opacity: 0;
+  transition:
+    opacity   var(--durationSlow) var(--curveDecelerateMax),
+    transform var(--durationSlow) var(--curveDecelerateMax);
+}
+
+.fui-dialog[data-state="open"] {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.fui-dialog-title {
+  margin: 0 0 var(--spacingVerticalS) 0;
+  font: var(--fontWeightSemibold) var(--fontSizeBase500)/var(--lineHeightBase500) var(--fontFamilyBase);
+  color: var(--colorNeutralForeground1);
+}
+
+.fui-dialog-body { color: var(--colorNeutralForeground2); }
+
+.fui-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacingHorizontalS);
+  margin-top: var(--spacingVerticalXXL);
+}
+
+
+/* -----------------------------------------------------------------------------
+   10. Utility helpers
+   --------------------------------------------------------------------------- */
+
+.fui-sr-only {
+  /* Visually hidden but available to screen readers */
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+
+/* -----------------------------------------------------------------------------
+   11. Reduced motion
+   --------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+
+/* -----------------------------------------------------------------------------
+   12. High contrast (forced colors)
+   --------------------------------------------------------------------------- */
+
+@media (forced-colors: active) {
+  .fui-btn,
+  .fui-input,
+  .fui-textarea,
+  .fui-select,
+  .fui-card {
+    border: var(--strokeWidthThick) solid CanvasText;
+  }
+  .fui-btn--primary {
+    background: Highlight;
+    color: HighlightText;
+  }
+  .fui-card { box-shadow: none; }
+}
